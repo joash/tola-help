@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load saved_queries %}
+{% block helpdesk %}
+<script src="https://hackpad.com/static/hackpad.js"/></script>
+<script>
+$(document).ready(function(){
+  hackpad.render("#hackpad_pad", "sprc66F7GR2","tola");
+});
+</script>
+
+<div id='container2'>
+    <div id='header' class="row">
+        <br/>
+        <h1>{% block h1_title %}{% trans "Blog" %}{% endblock %}</h1>
+    </div>
+
+    <div id='body' class="row">
+        {% block helpdesk_body %}{% endblock %}
+
+        <div id="hackpad_pad"></div>
+
+    </div>
+</div>
+
+{% endblock %}

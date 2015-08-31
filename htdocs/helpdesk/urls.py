@@ -144,3 +144,8 @@ urlpatterns += patterns('helpdesk.views.kb',
     url(r'^kb/(?P<slug>[A-Za-z0-9_-]+)/$',
         'category', name='helpdesk_kb_category'),
 )
+
+urlpatterns += patterns('helpdesk.views.blog',
+    url(r'^blog/$',
+        'index', name='blog'),
+)

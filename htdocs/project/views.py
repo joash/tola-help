@@ -10,7 +10,7 @@ from djangocosign.models import UserProfile
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/profile/')
 def home(request):
     return render(request, 'home.html', {'home_tab': 'active'})
 
@@ -75,9 +75,8 @@ def profile(request):
     otherwise redirect them to registration version
     """
     if request.user.is_authenticated():
-        print request.user
-        obj = UserProfile.objects.get(user=request.user)
-        form = RegistrationForm(request.POST or None, instance=obj, initial={'username': request.user})
+        obj = get_object_or_404(UserProfile, user=request.user)
+        form = RegistrationForm(request.POST or None, instance=obj,initial={'username': request.user})
 
         if request.method == 'POST':
             if form.is_valid():

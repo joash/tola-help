@@ -1,12 +1,3 @@
-"""
-django-helpdesk - A Django powered ticket tracker for small enterprise.
-
-(c) Copyright 2008 Jutda. All Rights Reserved. See LICENSE for details.
-
-views/public.py - All public facing views, eg non-staff (no authentication
-                  required) views.
-"""
-
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404

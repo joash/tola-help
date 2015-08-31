@@ -1,17 +1,13 @@
-"""
-django-helpdesk - A Django powered ticket tracker for small enterprise.
-
-(c) Copyright 2008 Jutda. All Rights Reserved. See LICENSE for details.
-
-forms.py - Definitions of newforms-based forms for creating and maintaining
-           tickets.
-"""
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
-from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import *
+from crispy_forms.bootstrap import *
+from crispy_forms.layout import Layout, Submit, Reset
+import floppyforms as forms
 from django.forms import extras
 from django.core.files.storage import default_storage
 from django.conf import settings
@@ -29,50 +25,8 @@ except ImportError:
 from helpdesk.lib import send_templated_mail, safe_template_context
 from helpdesk.models import Ticket, Queue, FollowUp, Attachment, IgnoreEmail, TicketCC, CustomField, TicketCustomFieldValue, TicketDependency
 
-class CustomFieldMixin(object):
-    """
-    Mixin that provides a method to turn CustomFields into an actual field
-    """
-    def customfield_to_field(self, field, instanceargs):
-        if field.data_type == 'varchar':
-            fieldclass = forms.CharField
-            instanceargs['max_length'] = field.max_length
-        elif field.data_type == 'text':
-            fieldclass = forms.CharField
-            instanceargs['widget'] = forms.Textarea
-            instanceargs['max_length'] = field.max_length
-        elif field.data_type == 'integer':
-            fieldclass = forms.IntegerField
-        elif field.data_type == 'decimal':
-            fieldclass = forms.DecimalField
-            instanceargs['decimal_places'] = field.decimal_places
-            instanceargs['max_digits'] = field.max_length
-        elif field.data_type == 'list':
-            fieldclass = forms.ChoiceField
-            choices = field.choices_as_array
-            if field.empty_selection_list:
-                choices.insert(0, ('','---------' ) )
-            instanceargs['choices'] = choices
-        elif field.data_type == 'boolean':
-            fieldclass = forms.BooleanField
-        elif field.data_type == 'date':
-            fieldclass = forms.DateField
-        elif field.data_type == 'time':
-            fieldclass = forms.TimeField
-        elif field.data_type == 'datetime':
-            fieldclass = forms.DateTimeField
-        elif field.data_type == 'email':
-            fieldclass = forms.EmailField
-        elif field.data_type == 'url':
-            fieldclass = forms.URLField
-        elif field.data_type == 'ipaddress':
-            fieldclass = forms.IPAddressField
-        elif field.data_type == 'slug':
-            fieldclass = forms.SlugField
 
-        self.fields['custom_%s' % field.name] = fieldclass(**instanceargs)
-
-class EditTicketForm(CustomFieldMixin, forms.ModelForm):
+class EditTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         exclude = ('created', 'modified', 'status', 'on_hold', 'resolution', 'last_escalation', 'assigned_to')
@@ -97,7 +51,16 @@ class EditTicketForm(CustomFieldMixin, forms.ModelForm):
                     }
 
             self.customfield_to_field(field, instanceargs)
-
+    #Crispy Form Helper to add Bootstrap and layout
+    helper = FormHelper()
+    helper.form_method = 'post'
+    helper.form_class = 'form-horizontal'
+    helper.label_class = 'col-sm-2'
+    helper.field_class = 'col-sm-6'
+    helper.form_error_title = 'Form Errors'
+    helper.error_text_inline = True
+    helper.help_text_inline = True
+    helper.html5_required = True
 
     def save(self, *args, **kwargs):
         
@@ -124,7 +87,8 @@ class EditFollowUpForm(forms.ModelForm):
         model = FollowUp
         exclude = ('date', 'user',)
 
-class TicketForm(CustomFieldMixin, forms.Form):
+class TicketForm(forms.Form):
+
     queue = forms.ChoiceField(
         label=_('Queue'),
         required=True,
@@ -202,6 +166,16 @@ class TicketForm(CustomFieldMixin, forms.Form):
 
             self.customfield_to_field(field, instanceargs)
 
+    #Crispy Form Helper to add Bootstrap and layout
+    helper = FormHelper()
+    helper.form_method = 'post'
+    helper.form_class = 'form-horizontal'
+    helper.label_class = 'col-sm-2'
+    helper.field_class = 'col-sm-6'
+    helper.form_error_title = 'Form Errors'
+    helper.error_text_inline = True
+    helper.help_text_inline = True
+    helper.html5_required = True
 
     def save(self, user):
         """
@@ -324,7 +298,7 @@ class TicketForm(CustomFieldMixin, forms.Form):
         return t
 
 
-class PublicTicketForm(CustomFieldMixin, forms.Form):
+class PublicTicketForm(forms.Form):
     queue = forms.ChoiceField(
         label=_('Queue'),
         required=True,
@@ -386,6 +360,17 @@ class PublicTicketForm(CustomFieldMixin, forms.Form):
                     }
 
             self.customfield_to_field(field, instanceargs)
+
+    #Crispy Form Helper to add Bootstrap and layout
+    helper = FormHelper()
+    helper.form_method = 'post'
+    helper.form_class = 'form-horizontal'
+    helper.label_class = 'col-sm-2'
+    helper.field_class = 'col-sm-6'
+    helper.form_error_title = 'Form Errors'
+    helper.error_text_inline = True
+    helper.help_text_inline = True
+    helper.html5_required = True
 
     def save(self):
         """
@@ -483,45 +468,6 @@ class PublicTicketForm(CustomFieldMixin, forms.Form):
         return t
 
 
-class UserSettingsForm(forms.Form):
-    login_view_ticketlist = forms.BooleanField(
-        label=_('Show Ticket List on Login?'),
-        help_text=_('Display the ticket list upon login? Otherwise, the dashboard is shown.'),
-        required=False,
-        )
-
-    email_on_ticket_change = forms.BooleanField(
-        label=_('E-mail me on ticket change?'),
-        help_text=_('If you\'re the ticket owner and the ticket is changed via the web by somebody else, do you want to receive an e-mail?'),
-        required=False,
-        )
-
-    email_on_ticket_assign = forms.BooleanField(
-        label=_('E-mail me when assigned a ticket?'),
-        help_text=_('If you are assigned a ticket via the web, do you want to receive an e-mail?'),
-        required=False,
-        )
-
-    email_on_ticket_apichange = forms.BooleanField(
-        label=_('E-mail me when a ticket is changed via the API?'),
-        help_text=_('If a ticket is altered by the API, do you want to receive an e-mail?'),
-        required=False,
-        )
-
-    tickets_per_page = forms.IntegerField(
-        label=_('Number of tickets to show per page'),
-        help_text=_('How many tickets do you want to see on the Ticket List page?'),
-        required=False,
-        min_value=1,
-        max_value=1000,
-        )
-
-    use_email_as_submitter = forms.BooleanField(
-        label=_('Use my e-mail address when submitting tickets?'),
-        help_text=_('When you submit a ticket, do you want to automatically use your e-mail address as the submitter address? You can type a different e-mail address when entering the ticket if needed, this option only changes the default.'),
-        required=False,
-        )
-
 class EmailIgnoreForm(forms.ModelForm):
     class Meta:
         model = IgnoreEmail
@@ -531,7 +477,7 @@ class TicketCCForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TicketCCForm, self).__init__(*args, **kwargs)
         users = User.objects.filter(is_active=True).order_by(User.USERNAME_FIELD)
-        self.fields['user'].queryset = users 
+        self.fields['user'].queryset = users
     class Meta:
         model = TicketCC
         exclude = ('ticket',)

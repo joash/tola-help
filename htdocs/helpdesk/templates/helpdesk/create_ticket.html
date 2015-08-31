@@ -10,7 +10,8 @@
 
 <form class="form-horizontal" method='post' action='./' enctype='multipart/form-data'  name="most">
 
-    {{ form }}
+        {% load crispy_forms_tags %}
+        {% crispy form form.helper %}
         {% comment %}{% for field in form %}
             {% if field.is_hidden %}
                 {{ field }}

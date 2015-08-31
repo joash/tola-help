@@ -211,6 +211,7 @@ THIRD_PARTY_APPS = (
     'report_builder',
     'mathfilters',
     'import_export',
+    'requests_oauthlib',
 )
 
 # Apps specific for this project go here.

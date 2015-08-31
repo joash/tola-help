@@ -41,8 +41,7 @@ def item(request, item):
     item = get_object_or_404(KBItem, pk=item)
     return render_to_response('helpdesk/kb_item.html',
         RequestContext(request, {
-            'item': item,
-            'helpdesk_settings': helpdesk_settings,
+            'item': item
         }))
 
 

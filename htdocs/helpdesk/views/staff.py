@@ -37,7 +37,7 @@ try:
 except ImportError:
     from datetime import datetime as timezone
 
-from helpdesk.forms import TicketForm, UserSettingsForm, EmailIgnoreForm, EditTicketForm, TicketCCForm, EditFollowUpForm, TicketDependencyForm
+from helpdesk.forms import TicketForm, EmailIgnoreForm, EditTicketForm, TicketCCForm, EditFollowUpForm, TicketDependencyForm
 from helpdesk.lib import send_templated_mail, query_to_dict, apply_query, safe_template_context
 from helpdesk.models import Ticket, Queue, FollowUp, TicketChange, PreSetReply, Attachment, SavedSearch, IgnoreEmail, TicketCC, TicketDependency
 
@@ -880,6 +880,7 @@ def create_ticket(request):
     return render_to_response('helpdesk/create_ticket.html',
         RequestContext(request, {
             'form': form,
+            'helper': form.helper,
         }))
 create_ticket = staff_member_required(create_ticket)
 
