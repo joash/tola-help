@@ -105,8 +105,8 @@
 
         <div class="container">
             <br/>
-            <br/>
             <div>{% block bread_crumb %}{% endblock %}</div>
+            <br/>
             <div id = "alerts">
                 <!-- Any messages for users -->
                 {% block messages %}
@@ -118,7 +118,6 @@
                                         <div class="alert alert-{{message.tags}}">{{ message|safe }}</div>
                                     {% endif %}
                             {% endfor %}
-                    <br/>
                     {% endif %}
                 {% endblock messages %}
             </div>

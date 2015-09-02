@@ -191,7 +191,11 @@
 </fieldset>
 
 <input class="btn btn-primary" type='submit' value='{% trans "Update This Ticket" %}' />
-
+{% if not ticket.github_issue_url %}
+    <input name="github" type='button' class="btn btn-info" value='{% trans "Send to Github" %}' onClick="location.href='send_to_github/'"/>
+{% else %}
+    <a href="{{ ticket.github_issue_url }}" target="_new">View Issue in Github</a>
+{% endif %}
 {% csrf_token %}</form>
 
 </div>

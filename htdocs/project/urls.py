@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'djangotemplate.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^$', 'project.views.home', name='index'),
 
     #base template include
     url(r'^$', TemplateView.as_view(template_name='base.html')),

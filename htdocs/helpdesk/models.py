@@ -400,6 +400,10 @@ class Ticket(models.Model):
         help_text=_('The date this ticket was last escalated - updated '
             'automatically by management/commands/escalate_tickets.py.'),
         )
+    github_issue_number = models.CharField(max_length=255,null=True, blank=True)
+    github_issue_url = models.CharField(max_length=255,null=True, blank=True)
+    github_issue_id = models.CharField(max_length=255,null=True, blank=True)
+
     def _get_assigned_to(self):
         """ Custom property to allow us to easily print 'Unassigned' if a
         ticket has no owner, or the users name if it's assigned. If the user

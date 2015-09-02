@@ -31,6 +31,8 @@ from django.utils.dates import MONTHS_3
 from django.utils.translation import ugettext as _
 from django.utils.html import escape
 from django import forms
+from django.contrib import messages
+from django.conf import settings
 
 try:
     from django.utils import timezone
@@ -40,6 +42,7 @@ except ImportError:
 from helpdesk.forms import TicketForm, EmailIgnoreForm, EditTicketForm, TicketCCForm, EditFollowUpForm, TicketDependencyForm
 from helpdesk.lib import send_templated_mail, query_to_dict, apply_query, safe_template_context
 from helpdesk.models import Ticket, Queue, FollowUp, TicketChange, PreSetReply, Attachment, SavedSearch, IgnoreEmail, TicketCC, TicketDependency
+from helpdesk.github import new_issue, get_issue, update_issue
 
 staff_member_required = user_passes_test(lambda u: u.is_authenticated() and u.is_active and u.is_staff)
 
@@ -119,6 +122,23 @@ def dashboard(request):
             'basic_ticket_stats': basic_ticket_stats,
         }))
 dashboard = staff_member_required(dashboard)
+
+
+def send_to_github(request, ticket_id):
+    ticket = get_object_or_404(Ticket, id=ticket_id)
+    repo = settings.GITHUB_REPO
+
+    if not ticket.github_issue_id:
+        response = new_issue(repo,ticket)
+    else:
+        response = update_issue(repo,ticket)
+
+    if int(response) == 201:
+        messages.success(request, 'Success, issue sent to Github')
+    else:
+        messages.success(request, 'There was a problem sending the ticket to GitHub')
+
+    return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
 
 
 def delete_ticket(request, ticket_id):
@@ -333,6 +353,7 @@ def update_ticket(request, ticket_id, public=False):
         due_date == ticket.due_date,
         (owner == -1) or (not owner and not ticket.assigned_to) or (owner and User.objects.get(id=owner) == ticket.assigned_to),
     ])
+
     if no_changes:
         return return_to_ticket(request.user, ticket)
 

@@ -61,6 +61,7 @@ class EditTicketForm(forms.ModelForm):
     helper.error_text_inline = True
     helper.help_text_inline = True
     helper.html5_required = True
+    helper.form_tag = False
 
     def save(self, *args, **kwargs):
         
@@ -176,6 +177,7 @@ class TicketForm(forms.Form):
     helper.error_text_inline = True
     helper.help_text_inline = True
     helper.html5_required = True
+    helper.form_tag = False
 
     def save(self, user):
         """
@@ -371,6 +373,7 @@ class PublicTicketForm(forms.Form):
     helper.error_text_inline = True
     helper.help_text_inline = True
     helper.html5_required = True
+    helper.form_tag = False
 
     def save(self):
         """
