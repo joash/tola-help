@@ -1,1 +1,1 @@
-web: gunicorn tolahelp.wsgi
+web: gunicorn project.wsgi --log-file -
