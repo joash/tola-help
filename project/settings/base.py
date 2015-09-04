@@ -199,6 +199,7 @@ DJANGO_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'social.apps.django_app.default',
 
 )
 
@@ -224,6 +225,14 @@ LOCAL_APPS = (
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
+
+####### AUTHENTICATION BAKEND CONFIG ##################
+# https://github.com/django/django/blob/master/django/contrib/auth/backends.py
+AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 
 ########## LOGGING CONFIGURATION

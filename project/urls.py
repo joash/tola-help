@@ -9,9 +9,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'djangotemplate.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    #Auth backend URL's
+    url('', include('django.contrib.auth.urls', namespace='auth')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
+    #Home page
     url(r'^$', 'project.views.home', name='index'),
 
     #base template include
