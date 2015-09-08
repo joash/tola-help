@@ -6,8 +6,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from helpdesk.models import DocumentationApp, FAQ
 from django.contrib.auth.views import login, logout
-from djangocosign.models import UserProfile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 @login_required(login_url='/accounts/profile/')
@@ -75,7 +75,7 @@ def profile(request):
     otherwise redirect them to registration version
     """
     if request.user.is_authenticated():
-        obj = get_object_or_404(UserProfile, user=request.user)
+        obj = get_object_or_404(User, user=request.user)
         form = RegistrationForm(request.POST or None, instance=obj,initial={'username': request.user})
 
         if request.method == 'POST':

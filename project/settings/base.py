@@ -219,7 +219,6 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'project',
     'helpdesk',
-    'djangocosign',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
