@@ -56,7 +56,7 @@ class RegistrationForm(UserChangeForm):
     helper.error_text_inline = True
     helper.help_text_inline = True
     helper.html5_required = True
-    helper.layout = Layout(Fieldset('','title', 'name', 'employee_number', 'user', 'username', 'country', 'countries','modified_by','created','updated'), Submit('submit', 'Submit', css_class='btn-default'), Reset('reset', 'Reset', css_class='btn-warning'))
+    helper.layout = Layout(Fieldset('', 'first_name', 'last_name', 'user', 'username', 'password'), Submit('submit', 'Submit', css_class='btn-default'), Reset('reset', 'Reset', css_class='btn-warning'))
 
 
 

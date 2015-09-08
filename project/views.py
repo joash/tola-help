@@ -75,7 +75,7 @@ def profile(request):
     otherwise redirect them to registration version
     """
     if request.user.is_authenticated():
-        obj = get_object_or_404(User, user=request.user)
+        obj = get_object_or_404(User, username=request.user)
         form = RegistrationForm(request.POST or None, instance=obj,initial={'username': request.user})
 
         if request.method == 'POST':
