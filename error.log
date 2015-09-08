@@ -2931,3 +2931,4 @@ Traceback (most recent call last):
   File "/Library/Python/2.7/site-packages/django/conf/__init__.py", line 49, in __getattr__
     return getattr(self._wrapped, name)
 AttributeError: 'Settings' object has no attribute 'LDAP_SERVER'
+[2015-07-Sep 17:38:19] WARNING [django.request:170] Not Found: /favicon.ico
