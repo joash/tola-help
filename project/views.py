@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
-@login_required(login_url='/accounts/profile/')
 def home(request):
     return render(request, 'home.html', {'home_tab': 'active'})
 
