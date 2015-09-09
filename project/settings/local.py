@@ -69,3 +69,10 @@ GITHUB_REPO = "https://api.github.com/repos/mercycorps/tola-help/issues"
 ########## GOOGLE AUTH
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "445847194486-gl2v6ud6ll65vf06vbjaslqqgejad61k.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "qAAdNMQy77Vwqgj4YgOu20f7"
+
+########## LOCAL DEV APPS
+DEV_APPS = (
+    'debug_toolbar',
+)
+
+INSTALLED_APPS = INSTALLED_APPS + DEV_APPS

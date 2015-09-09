@@ -137,6 +137,7 @@ def send_to_github(request, ticket_id):
         messages.success(request, 'Success, issue sent to Github')
     else:
         messages.success(request, 'There was a problem sending the ticket to GitHub')
+        print response
 
     return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
 
@@ -273,7 +274,6 @@ def view_ticket(request, ticket_id):
             'ticketcc_string': ticketcc_string,
             'SHOW_SUBSCRIBE': SHOW_SUBSCRIBE,
         }))
-view_ticket = staff_member_required(view_ticket)
 
 def return_ticketccstring_and_show_subscribe(user, ticket):
     ''' used in view_ticket() and followup_edit()'''
@@ -903,7 +903,6 @@ def create_ticket(request):
             'form': form,
             'helper': form.helper,
         }))
-create_ticket = staff_member_required(create_ticket)
 
 
 def raw_details(request, type):

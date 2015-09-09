@@ -2932,3 +2932,92 @@ Traceback (most recent call last):
     return getattr(self._wrapped, name)
 AttributeError: 'Settings' object has no attribute 'LDAP_SERVER'
 [2015-07-Sep 17:38:19] WARNING [django.request:170] Not Found: /favicon.ico
+[2015-09-Sep 05:58:42] ERROR [django.request:256] Internal Server Error: /complete/google-oauth2/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Library/Python/2.7/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/oauth.py", line 388, in auth_complete
+    *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/utils.py", line 229, in wrapper
+    return func(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/oauth.py", line 399, in do_auth
+    return self.strategy.authenticate(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/strategies/django_strategy.py", line 96, in authenticate
+    return authenticate(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/django/contrib/auth/__init__.py", line 74, in authenticate
+    user = backend.authenticate(**credentials)
+  File "/Library/Python/2.7/site-packages/social/backends/base.py", line 82, in authenticate
+    return self.pipeline(pipeline, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/base.py", line 85, in pipeline
+    out = self.run_pipeline(pipeline, pipeline_index, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/base.py", line 112, in run_pipeline
+    result = func(*args, **out) or {}
+  File "/Library/Python/2.7/site-packages/social/pipeline/social_auth.py", line 20, in social_user
+    social = backend.strategy.storage.user.get_social_auth(provider, uid)
+  File "/Library/Python/2.7/site-packages/social/apps/django_app/default/models.py", line 48, in get_social_auth
+    uid=uid)
+  File "/Library/Python/2.7/site-packages/django/db/models/query.py", line 328, in get
+    num = len(clone)
+  File "/Library/Python/2.7/site-packages/django/db/models/query.py", line 144, in __len__
+    self._fetch_all()
+  File "/Library/Python/2.7/site-packages/django/db/models/query.py", line 965, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/Library/Python/2.7/site-packages/django/db/models/query.py", line 238, in iterator
+    results = compiler.execute_sql()
+  File "/Library/Python/2.7/site-packages/django/db/models/sql/compiler.py", line 840, in execute_sql
+    cursor.execute(sql, params)
+  File "/Library/Python/2.7/site-packages/django/db/backends/utils.py", line 79, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/Library/Python/2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Library/Python/2.7/site-packages/django/db/utils.py", line 97, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/Library/Python/2.7/site-packages/django/db/backends/utils.py", line 64, in execute
+    return self.cursor.execute(sql, params)
+  File "/Library/Python/2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/Library/Python/2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/Library/Python/2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'helpdesk.social_auth_usersocialauth' doesn't exist")
+[2015-09-Sep 06:01:48] ERROR [django.request:256] Internal Server Error: /complete/google-oauth2/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Library/Python/2.7/site-packages/django/views/decorators/cache.py", line 57, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/apps/django_app/utils.py", line 51, in wrapper
+    return func(request, backend, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/apps/django_app/views.py", line 28, in complete
+    redirect_name=REDIRECT_FIELD_NAME, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/actions.py", line 43, in do_complete
+    user = backend.complete(user=user, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/backends/base.py", line 41, in complete
+    return self.auth_complete(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/social/utils.py", line 232, in wrapper
+    raise AuthCanceled(args[0])
+AuthCanceled: Authentication process canceled
+[2015-09-Sep 06:31:36] ERROR [django.request:256] Internal Server Error: /helpdesk/view/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/public.py", line 120, in view_ticket
+    'helpdesk_settings': helpdesk_settings,
+NameError: global name 'helpdesk_settings' is not defined

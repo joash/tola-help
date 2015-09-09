@@ -56,7 +56,6 @@ def homepage(request):
     return render_to_response('helpdesk/public_homepage.html',
         RequestContext(request, {
             'form': form,
-            'helpdesk_settings': helpdesk_settings,
             'kb_categories': knowledgebase_categories
         }))
 
@@ -116,8 +115,7 @@ def view_ticket(request):
         RequestContext(request, {
             'ticket': ticket,
             'email': email,
-            'error_message': error_message,
-            'helpdesk_settings': helpdesk_settings,
+            'error_message': error_message
         }))
 
 def change_language(request):
