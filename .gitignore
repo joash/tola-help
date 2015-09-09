@@ -1,0 +1,44 @@
+*.log
+*.pot
+*.pyc
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+
+# Logs:
+*.log
+
+#virtualenv
+frds-venv/
+
+#allvritualenv
+venv/
+
+#conf
+conf/awstats.conf
+
+#Misc.
+.idea/
+.DS_Store
+media/
+local.py
+htdocs/tola/settings/local.py
+client_secrets.json
+djangocosign
+htdocs/djangocosign
+ssl.tola-activity.conf
+*.crt
+*.key
+error.log
