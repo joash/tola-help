@@ -8,11 +8,39 @@ from helpdesk.models import DocumentationApp, FAQ
 from django.contrib.auth.views import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from helpdesk.github import latest_release
+from helpdesk.models import Ticket
+from django.conf import settings
+import os
 
 
 def home(request):
 
-    return render(request, 'home.html', {'home_tab': 'active'})
+    #Ping Tola servers
+    activity_up = os.system("ping -c 1 " + "http://tola-activity.mercycorps.org")
+    data_up = os.system("ping -c 1 " + "http://tola.mercycorps.org")
+
+    #GitHub releases for status
+    tola_repo = settings.GITHUB_REPO_1
+    tola_activity_repo = settings.GITHUB_REPO_2
+
+    tola = latest_release(tola_repo)
+    if tola:
+        tola_url = tola['html_url']
+        tola_number = tola['tag_name']
+    else:
+        tola_url = None
+        tola_number = None
+
+    tola_activity = latest_release(tola_activity_repo)
+    if tola_activity:
+        tola_activity_url = tola_activity['html_url']
+        tola_activity_number = tola_activity['tag_name']
+    else:
+        tola_activity_url = None
+        tola_activity_number = None
+
+    return render(request, 'home.html', {'home_tab': 'active', 'tola_url': tola_url,'tola_number': tola_number, 'tola_activity_url': tola_activity_url, 'tola_activity_number': tola_activity_number, 'activity_up': activity_up, 'data_up': data_up })
 
 
 def contact(request):

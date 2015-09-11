@@ -63,8 +63,9 @@ HACKPAD_CLIENT_ID = "obceRteSJqv"
 HACKPAD_SECRET = "vrelEoj3WHW3bzjHiMZxX6oXfbVNAQnu"
 
 ########## GITHUB
-GITHUB_AUTH_TOKEN = "ca57982c164659e0ac45f7d59a00d4914d48b895"
-GITHUB_REPO = "https://api.github.com/repos/mercycorps/tola-help/issues"
+GITHUB_AUTH_TOKEN = "2685bac2fe078dd3b276f94ccc301a13b0656a80"
+GITHUB_REPO_1 = "https://api.github.com/repos/mercycorps/tola"
+GITHUB_REPO_2 = "https://api.github.com/repos/mercycorps/tola-activity"
 
 ########## GOOGLE AUTH
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "445847194486-gl2v6ud6ll65vf06vbjaslqqgejad61k.apps.googleusercontent.com"

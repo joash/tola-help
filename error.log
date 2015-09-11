@@ -3021,3 +3021,139 @@ Traceback (most recent call last):
   File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/public.py", line 120, in view_ticket
     'helpdesk_settings': helpdesk_settings,
 NameError: global name 'helpdesk_settings' is not defined
+[2015-10-Sep 15:48:31] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 15, in home
+    tola = latest_release('tola')
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/github.py", line 76, in latest_release
+    r = requests.post(repo,headers=header)
+  File "/Library/Python/2.7/site-packages/requests/api.py", line 109, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "/Library/Python/2.7/site-packages/requests/api.py", line 50, in request
+    response = session.request(method=method, url=url, **kwargs)
+  File "/Library/Python/2.7/site-packages/requests/sessions.py", line 451, in request
+    prep = self.prepare_request(req)
+  File "/Library/Python/2.7/site-packages/requests/sessions.py", line 382, in prepare_request
+    hooks=merge_hooks(request.hooks, self.hooks),
+  File "/Library/Python/2.7/site-packages/requests/models.py", line 304, in prepare
+    self.prepare_url(url, params)
+  File "/Library/Python/2.7/site-packages/requests/models.py", line 362, in prepare_url
+    to_native_string(url, 'utf8')))
+MissingSchema: Invalid URL 'tola//releases/latest': No schema supplied. Perhaps you meant http://tola//releases/latest?
+[2015-10-Sep 15:52:44] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 19, in home
+    tola_url = tola.html_url
+AttributeError: 'dict' object has no attribute 'html_url'
+[2015-10-Sep 15:53:39] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 19, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 15:54:23] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 15:54:33] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 15:55:11] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 15:58:44] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 15:59:01] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 16:00:20] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-10-Sep 16:02:12] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 10:49:56] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 10:49:57] WARNING [django.request:170] Not Found: /favicon.ico
+[2015-11-Sep 10:55:28] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 10:55:59] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 11:01:32] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 22, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 11:07:48] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 22, in home
+    tola_url = tola['html_url']
+KeyError: 'html_url'
+[2015-11-Sep 11:08:53] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 20, in home
+    tola = latest_release(tola_repo)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/github.py", line 86, in latest_release
+    print content
+UnboundLocalError: local variable 'content' referenced before assignment
+[2015-11-Sep 11:36:23] ERROR [django.request:256] Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 19, in home
+    activity_up = os.system("ping -c 1 " + "http://tola-activity.mercycorps.org")
+NameError: global name 'os' is not defined

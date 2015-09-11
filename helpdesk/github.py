@@ -9,6 +9,7 @@ def get_issue(repo):
         repoItem = json.loads(r.text or r.content)
         print "Django repository created: " + repoItem['created_at']
 
+
 def new_issue(repo,ticket):
 
     payload = {}
@@ -18,6 +19,8 @@ def new_issue(repo,ticket):
     payload['labels'] = labels
 
     token = settings.GITHUB_AUTH_TOKEN
+
+    repo = repo + "/issues"
 
     header = {'Authorization': 'token %s' % token}
     r = requests.post(repo,json.dumps(payload),headers=header)
@@ -39,6 +42,7 @@ def new_issue(repo,ticket):
 
     return r.status_code
 
+
 def update_issue(repo,ticket,id):
 
     payload = {}
@@ -48,7 +52,7 @@ def update_issue(repo,ticket,id):
     payload['labels'] = labels
 
     token = settings.GITHUB_AUTH_TOKEN
-    repo = repo + "/" + ticket.github_issue_number
+    repo = repo + "/issues/" + ticket.github_issue_number
 
     header = {'Authorization': 'token %s' % token}
     r = requests.post(repo,json.dumps(payload),headers=header)
@@ -66,3 +70,22 @@ def update_issue(repo,ticket,id):
         update_ticket.save()
 
     return r.status_code
+
+
+def latest_release(repo):
+
+    token = settings.GITHUB_AUTH_TOKEN
+    repo = repo + "/releases/latest"
+    print repo
+    header = {'Authorization': 'token %s' % token}
+    r = requests.get(repo,headers=header)
+    print r
+    if str(r.status_code) == "200":
+        content = json.loads(r.text or r.content)
+    else:
+        content = json.loads(r.text or r.content)
+        print content
+        print r.status_code
+        content = None
+
+    return content
