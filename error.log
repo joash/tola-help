@@ -3157,3 +3157,4 @@ Traceback (most recent call last):
   File "/Users/glind/Dropbox/PythonApps/tola-help/project/views.py", line 19, in home
     activity_up = os.system("ping -c 1 " + "http://tola-activity.mercycorps.org")
 NameError: global name 'os' is not defined
+[2015-12-Sep 11:38:31] WARNING [django.request:170] Not Found: /favicon.ico
