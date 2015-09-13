@@ -152,4 +152,7 @@ urlpatterns += patterns('helpdesk.views.kb',
 urlpatterns += patterns('helpdesk.views.blog',
     url(r'^blog/$',
         'index', name='blog'),
+
+    url(r'^blog/(?P<entry>\w+)/$',
+        'index', name='blog'),
 )

@@ -879,7 +879,10 @@ def edit_ticket(request, ticket_id):
         }))
 edit_ticket = staff_member_required(edit_ticket)
 
+
 def create_ticket(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
 
     assignable_users = User.objects.filter(is_active=True).order_by(User.USERNAME_FIELD)
 

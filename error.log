@@ -3158,3 +3158,183 @@ Traceback (most recent call last):
     activity_up = os.system("ping -c 1 " + "http://tola-activity.mercycorps.org")
 NameError: global name 'os' is not defined
 [2015-12-Sep 11:38:31] WARNING [django.request:170] Not Found: /favicon.ico
+[2015-12-Sep 12:53:50] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: index() takes exactly 2 arguments (1 given)
+[2015-12-Sep 12:55:08] WARNING [django.request:170] Not Found: /helpdesk/blog/Sz0rYsnorJB
+[2015-12-Sep 12:57:16] WARNING [django.request:170] Not Found: /helpdesk/blog/Sz0rYsnorJB/Sz0rYsnorJB
+[2015-12-Sep 13:17:25] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 16, in index
+    pad.append(name=search_get_name['name'])
+AttributeError: 'unicode' object has no attribute 'append'
+[2015-12-Sep 13:29:03] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    names[pad] = name
+TypeError: list indices must be integers, not unicode
+[2015-12-Sep 13:34:09] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    names[pad] = current_name['name']
+KeyError: 'name'
+[2015-12-Sep 13:34:46] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:35:09] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:35:32] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    names[pad] = current_name.title
+AttributeError: 'dict' object has no attribute 'title'
+[2015-12-Sep 13:35:54] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:39:02] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:42:20] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 16, in index
+    current_name = temp.search_for_pads(q=pad, start=0, limit=1)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 53, in search_for_pads
+    return self.do_api_request(api_link, 'GET', params)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 153, in do_api_request
+    print path + data
+NameError: global name 'data' is not defined
+[2015-12-Sep 13:43:21] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 16, in index
+    current_name = temp.search_for_pads(q=pad, start=0, limit=1)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 53, in search_for_pads
+    return self.do_api_request(api_link, 'GET', params)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 153, in do_api_request
+    print path + params
+TypeError: cannot concatenate 'str' and 'dict' objects
+[2015-12-Sep 13:43:37] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:44:48] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:45:53] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 16, in index
+    current_name = temp.search_for_pads(q=pad, start=0, limit=1)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 53, in search_for_pads
+    return self.do_api_request(api_link, 'GET', params)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/hackpad.py", line 155, in do_api_request
+    print item.q
+AttributeError: 'str' object has no attribute 'q'
+[2015-12-Sep 13:46:08] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:49:47] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:50:20] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 13:51:50] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 18, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 14:38:21] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 19, in index
+    names[pad] = current_name['title']
+KeyError: 'title'
+[2015-12-Sep 14:45:44] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 19, in index
+    current_name = temp.get_pad_content(q=pad)
+TypeError: get_pad_content() got an unexpected keyword argument 'q'
+[2015-12-Sep 14:50:31] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/Vnn1DQQRM47/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 19, in index
+    current_name = temp.get_pad_content(q="tola", start=0, limit=1)
+TypeError: get_pad_content() got an unexpected keyword argument 'q'
+[2015-13-Sep 09:49:27] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 21, in index
+    header = {'Authorization': 'token %s' % token}
+NameError: global name 'token' is not defined
+[2015-13-Sep 09:52:23] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    entry = my_hackpads.get(1)
+AttributeError: 'list' object has no attribute 'get'
+[2015-13-Sep 09:53:40] ERROR [django.request:256] Internal Server Error: /helpdesk/blog/
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/glind/Dropbox/PythonApps/tola-help/helpdesk/views/blog.py", line 17, in index
+    entry = my_hackpads.next()
+AttributeError: 'list' object has no attribute 'next'

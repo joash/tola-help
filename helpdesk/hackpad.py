@@ -148,6 +148,7 @@ class Hackpad(object):
             hackpad = r.json()
         except:
             hackpad = r.content
+
     except:
       print sys.exc_info()[0]
 

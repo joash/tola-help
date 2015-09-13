@@ -61,6 +61,8 @@ def homepage(request):
 
 
 def view_ticket(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
     ticket_req = request.GET.get('ticket', '')
     ticket = False
     email = request.GET.get('email', '')

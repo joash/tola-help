@@ -5,13 +5,19 @@ from django.template import loader, Context, RequestContext
 from django.conf import settings
 import os
 from helpdesk.hackpad import Hackpad
+import requests
+import json
 
 
-def index(request):
+def index(request, entry=0):
 
     temp = Hackpad('tola',settings.HACKPAD_CLIENT_ID,settings.HACKPAD_SECRET)
     my_hackpads = temp.list_all()
 
-    print my_hackpads
+    if entry ==0:
+        entry = my_hackpads[0]
 
-    return render_to_response('blog/base.html',RequestContext(request, {'hackpad': my_hackpads}))
+    next = my_hackpads[0]
+    previous = my_hackpads[-1]
+
+    return render_to_response('blog/base.html',RequestContext(request, {'hackpad': my_hackpads, 'entry': entry, 'previous':previous, 'next':next }))
