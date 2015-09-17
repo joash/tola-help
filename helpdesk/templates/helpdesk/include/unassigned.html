@@ -7,7 +7,7 @@
 <tbody>
 {% for ticket in unassigned_tickets %}
 <tr class="{{ ticket.get_priority_css_class }}">
-<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket }}</a></th>
+<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket|upper }}</a></th>
 <td>{{ ticket.priority }}</td>
 <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
 <td>{{ ticket.queue }}</td>
