@@ -225,7 +225,7 @@ $(document).ready(function() {
 <tbody>
 {% for ticket in tickets.object_list %}
 <tr class="{{ ticket.get_priority_css_class }}">
-<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket }}</a></th>
+<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket|upper }}</a></th>
 <td><input type='checkbox' name='ticket_id' value='{{ ticket.id }}' class='ticket_multi_select' /></td>
 <td>{{ ticket.priority }}</td>
 <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
