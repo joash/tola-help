@@ -88,6 +88,7 @@ class EditFollowUpForm(forms.ModelForm):
         model = FollowUp
         exclude = ('date', 'user',)
 
+
 class TicketForm(forms.Form):
 
     queue = forms.ChoiceField(
@@ -369,7 +370,7 @@ class PublicTicketForm(forms.Form):
     helper.html5_required = True
     helper.form_tag = False
 
-    def save(self):
+    def save(self, user):
         """
         Writes and returns a Ticket() object
         """
