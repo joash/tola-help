@@ -113,7 +113,6 @@ def view_ticket(request):
             return render_to_response('helpdesk/public_view_ticket.html',
                 RequestContext(request, {
                     'ticket': ticket,
-                    'helpdesk_settings': helpdesk_settings,
                     'next': redirect_url,
                 }))
 
@@ -126,6 +125,8 @@ def view_ticket(request):
 
 
 def public_ticket_list(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
     context = {}
 
     # Query_params will hold a dictionary of parameters relating to
@@ -290,6 +291,11 @@ def public_ticket_list(request):
     search_message = ''
 
     from helpdesk.lib import b64encode
+
+    try:
+        import pickle
+    except ImportError:
+        import cPickle as pickle
     urlsafe_query = b64encode(pickle.dumps(query_params))
 
     user_saved_queries = SavedSearch.objects.filter(Q(user=request.user) | Q(shared__exact=True))

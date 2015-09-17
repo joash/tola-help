@@ -302,7 +302,7 @@ class TicketForm(forms.Form):
 
 class PublicTicketForm(forms.Form):
     queue = forms.ChoiceField(
-        label=_('Queue'),
+        label=_('Application'),
         required=True,
         choices=()
         )
@@ -311,7 +311,7 @@ class PublicTicketForm(forms.Form):
         max_length=100,
         required=True,
         widget=forms.TextInput(),
-        label=_('Summary of your query'),
+        label=_('Summary of your request'),
         )
 
     submitter_email = forms.EmailField(
@@ -322,16 +322,18 @@ class PublicTicketForm(forms.Form):
 
     body = forms.CharField(
         widget=forms.Textarea(),
-        label=_('Description of your issue'),
+        label=_('Description'),
         required=True,
         help_text=_('Please be as descriptive as possible, including any '
             'details we may need to address your query.'),
         )
 
-    due_date = forms.DateTimeField(
-        widget=extras.SelectDateWidget,
-        required=False,
-        label=_('Due on'),
+    priority = forms.ChoiceField(
+        choices=Ticket.PRIORITY_CHOICES,
+        required=True,
+        initial='3',
+        label=_('Urgency'),
+        help_text=_('Please select a priority carefully.'),
         )
 
     attachment = forms.FileField(
