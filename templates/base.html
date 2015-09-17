@@ -59,7 +59,7 @@
                 {% if user.is_staff %}
                     <li><a href='{% url 'helpdesk_list' %}'><span class="glyphicon glyphicon-tags"></span> <span class="nav-text">Tickets</span></a></li>
                 {% else %}
-                    <li><a href='{% url 'helpdesk_public_view' %}'><span class="glyphicon glyphicon-tags"></span> <span class="nav-text">Tickets</span></a></li>
+                    <li><a href='{% url 'public_list' %}'><span class="glyphicon glyphicon-tags"></span> <span class="nav-text">Tickets</span></a></li>
                 {% endif %}
                 <li><a href='{% url 'helpdesk_submit' %}'><span class="glyphicon glyphicon-plus"></span> <span class="nav-text">New Ticket</span></a></li>
                 {% if user.is_staff %}
@@ -97,10 +97,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Login <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                               <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+                               <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
                             </li>
                             <li>
-                               <a href="{% url 'login' %}?next={{ request.path }}">Login with Tola Account</a>
+                               <a href="{% url 'login' %}">Login with Tola Account</a>
                             </li>
                         </ul>
                     </li><!-- .dropdown collapse -->

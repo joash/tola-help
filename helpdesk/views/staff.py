@@ -7,30 +7,25 @@ views/staff.py - The bulk of the application - provides most business logic and
                  renders all staff-facing views.
 """
 from __future__ import unicode_literals
-from django.utils.encoding import python_2_unicode_compatible
 from datetime import datetime, timedelta
-import sys
 
-from django.conf import settings
 try:
     from django.contrib.auth import get_user_model
     User = get_user_model()
 except ImportError:
     from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.files.base import ContentFile
+from django.contrib.auth.decorators import user_passes_test
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.core import paginator
 from django.db import connection
 from django.db.models import Q
-from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render_to_response, get_object_or_404
-from django.template import loader, Context, RequestContext
+from django.template import RequestContext
 from django.utils.dates import MONTHS_3
 from django.utils.translation import ugettext as _
 from django.utils.html import escape
-from django import forms
 from django.contrib import messages
 from django.conf import settings
 
@@ -39,7 +34,7 @@ try:
 except ImportError:
     from datetime import datetime as timezone
 
-from helpdesk.forms import TicketForm, EmailIgnoreForm, EditTicketForm, TicketCCForm, EditFollowUpForm, TicketDependencyForm
+from helpdesk.forms import TicketForm, EmailIgnoreForm, EditTicketForm, TicketCCForm, EditFollowUpForm, TicketDependencyForm, PublicTicketForm
 from helpdesk.lib import send_templated_mail, query_to_dict, apply_query, safe_template_context
 from helpdesk.models import Ticket, Queue, FollowUp, TicketChange, PreSetReply, Attachment, SavedSearch, IgnoreEmail, TicketCC, TicketDependency
 from helpdesk.github import new_issue, get_issue, update_issue
@@ -887,9 +882,15 @@ def create_ticket(request):
     assignable_users = User.objects.filter(is_active=True).order_by(User.USERNAME_FIELD)
 
     if request.method == 'POST':
-        form = TicketForm(request.POST, request.FILES)
-        form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
-        form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.get_username()] for u in assignable_users]
+
+        if request.user.is_staff:
+            form = TicketForm(request.POST, request.FILES)
+            form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
+            form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.get_username()] for u in assignable_users]
+        else:
+            form = PublicTicketForm(request.POST, request.FILES)
+            form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
+
         if form.is_valid():
             ticket = form.save(user=request.user)
             return HttpResponseRedirect(ticket.get_absolute_url())
@@ -900,9 +901,13 @@ def create_ticket(request):
         if 'queue' in request.GET:
             initial_data['queue'] = request.GET['queue']
 
-        form = TicketForm(initial=initial_data)
-        form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
-        form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.get_username()] for u in assignable_users]
+        if request.user.is_staff:
+            form = TicketForm(initial=initial_data)
+            form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
+            form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.get_username()] for u in assignable_users]
+        else:
+            form = PublicTicketForm(initial=initial_data)
+            form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
 
     return render_to_response('helpdesk/create_ticket.html',
         RequestContext(request, {
