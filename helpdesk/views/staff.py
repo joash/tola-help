@@ -121,7 +121,7 @@ dashboard = staff_member_required(dashboard)
 
 def send_to_github(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    if ticket.queue == 1:
+    if int(ticket.queue) == 1:
         repo = settings.GITHUB_REPO_1
     else:
         repo = settings.GITHUB_REPO_2
