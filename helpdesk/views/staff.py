@@ -121,7 +121,8 @@ dashboard = staff_member_required(dashboard)
 
 def send_to_github(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    if int(ticket.queue) == 1:
+
+    if ticket.queue == "Tola Data":
         repo = settings.GITHUB_REPO_1
     else:
         repo = settings.GITHUB_REPO_2
@@ -215,7 +216,7 @@ followup_delete = staff_member_required(followup_delete)
 
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-
+    print ticket.queue
     if 'take' in request.GET:
         # Allow the user to assign the ticket to themselves whilst viewing it.
 
