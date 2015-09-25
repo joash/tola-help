@@ -2,7 +2,7 @@
 <table class="table table-hover table-bordered table-striped">
 <caption>{% trans "Unassigned Tickets" %} {% trans "(pick up a ticket if you start to work on it)" %}</caption>
 <thead>
-<tr><th>#</th><th>{% trans "Pr" %}</th><th>{% trans "Title" %}</th><th>{% trans "Queue" %}</th><th>{% trans "Created" %}</th><th>&nbsp;</th></tr>
+<tr><th>#</th><th>{% trans "Pr" %}</th><th>{% trans "Title" %}</th><th>{% trans "Queue" %}</th><th>{% trans "Github" %}</th><th>{% trans "Created" %}</th><th>&nbsp;</th></tr>
 </thead>
 <tbody>
 {% for ticket in unassigned_tickets %}
@@ -11,6 +11,7 @@
 <td>{{ ticket.priority }}</td>
 <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
 <td>{{ ticket.queue }}</td>
+<td>{% if ticket.github_url %}<a href="{{ ticket.github_issue_url }}" target="_new">{{ ticket.github_issue_number }}</a>{% endif %}</td>
 <td><span title='{{ ticket.created|date:"r" }}'>{{ ticket.created }}</span></td>
 <th><a href='{{ ticket.get_absolute_url }}?take'><span class='button button_take'>{% trans "Take" %}</span></a> | <a href='{% url 'helpdesk_delete' ticket.id %}'><span class='button button_delete'>{% trans "Delete" %}</span></a></th>
 </tr>

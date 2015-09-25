@@ -16,7 +16,7 @@
 <td><span title='{{ ticket.modified|date:"r" }}'>{{ ticket.modified }}</span></td>
 </tr>
 {% empty %}{% if ticket_list_empty_message %}
-<tr><td colspan='6'>{{ ticket_list_empty_message }}</td></tr>
+<tr><td colspan='7'>{{ ticket_list_empty_message }}</td></tr>
 {% endif %}{% endfor %}
 </tbody>
 </table>
