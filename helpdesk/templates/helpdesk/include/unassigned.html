@@ -11,7 +11,7 @@
 <td>{{ ticket.priority }}</td>
 <th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
 <td>{{ ticket.queue }}</td>
-<td>{% if ticket.github_url %}<a href="{{ ticket.github_issue_url }}" target="_new">{{ ticket.github_issue_number }}</a>{% endif %}</td>
+<td>{% if ticket.github_issue_url %}<a href="{{ ticket.github_issue_url }}" target="_new">{{ ticket.github_issue_number }}</a>{% endif %}</td>
 <td><span title='{{ ticket.created|date:"r" }}'>{{ ticket.created }}</span></td>
 <th><a href='{{ ticket.get_absolute_url }}?take'><span class='button button_take'>{% trans "Take" %}</span></a> | <a href='{% url 'helpdesk_delete' ticket.id %}'><span class='button button_delete'>{% trans "Delete" %}</span></a></th>
 </tr>
