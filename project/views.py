@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from helpdesk.github import latest_release
 from helpdesk.models import Ticket
 from django.conf import settings
+from django.db.models import Count
 import os
 
 
@@ -40,7 +41,12 @@ def home(request):
         tola_activity_url = None
         tola_activity_number = None
 
-    return render(request, 'home.html', {'home_tab': 'active', 'tola_url': tola_url,'tola_number': tola_number, 'tola_activity_url': tola_activity_url, 'tola_activity_number': tola_activity_number, 'activity_up': activity_up, 'data_up': data_up })
+    tickets = Ticket.objects.all().values('status').annotate(total=Count('status')).order_by('total')
+
+    recent_tickets = Ticket.objects.all().order_by('created')[:7]
+
+
+    return render(request, 'home.html', {'home_tab': 'active', 'tola_url': tola_url,'tola_number': tola_number, 'tola_activity_url': tola_activity_url, 'tola_activity_number': tola_activity_number, 'activity_up': activity_up, 'data_up': data_up, 'tickets': tickets , 'recent_tickets': recent_tickets})
 
 
 def contact(request):
