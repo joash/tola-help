@@ -59,6 +59,22 @@ def dashboard(request):
             status__in = [Ticket.CLOSED_STATUS, Ticket.RESOLVED_STATUS],
         )
 
+    # check status in github
+    for ticket in tickets:
+        #if there is a github issue check it's status in github
+        if ticket.github_issue_number:
+            if str(ticket.queue) == "Tola Data":
+                repo = settings.GITHUB_REPO_1
+            else:
+                repo = settings.GITHUB_REPO_2
+            github_status = get_issue(repo,ticket.github_issue_number)
+
+            if github_status.state == "open" and ticket.status != 1:
+                Ticket.objects.update(status=1)
+            elif github_status.state == "closed" and ticket.status != 4:
+                Ticket.objects.update(status=4)
+
+
     # closed & resolved tickets, assigned to current user
     tickets_closed_resolved =  Ticket.objects.select_related('queue').filter(
             assigned_to=request.user,
@@ -123,12 +139,8 @@ def send_to_github(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
 
     if str(ticket.queue) == "Tola Data":
-        print "yes"
-        print ticket.queue
         repo = settings.GITHUB_REPO_1
     else:
-        print "no"
-        print ticket.queue
         repo = settings.GITHUB_REPO_2
 
     if not ticket.github_issue_id:

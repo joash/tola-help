@@ -3,11 +3,13 @@ import json
 from helpdesk.models import Ticket
 from django.conf import settings
 
-def get_issue(repo):
+def get_issue(repo,id):
+    repo = repo + "/issues/" + id
     r = requests.get(repo)
     if(r.ok):
-        repoItem = json.loads(r.text or r.content)
-        print "Django repository created: " + repoItem['created_at']
+        issue = json.loads(r.text or r.content)
+
+    return issue
 
 
 def new_issue(repo,ticket):
