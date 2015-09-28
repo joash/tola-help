@@ -137,6 +137,14 @@ urlpatterns += patterns('helpdesk.views.public',
     url(r'^all_tickets/$',
         'public_ticket_list',
         name='public_list'),
+
+    url(r'^vote_up/(?P<id>[0-9]+)/$',
+        'vote_up',
+        name='vote_up'),
+
+    url(r'^vote_down/(?P<id>[0-9]+)/$',
+        'vote_down',
+        name='vote_down'),
 )
 
 urlpatterns += patterns('helpdesk.views.kb',

@@ -286,6 +286,7 @@ class Queue(models.Model):
         super(Queue, self).save(*args, **kwargs)
 
 
+
 class Ticket(models.Model):
     """
     To allow a ticket to be entered as quickly as possible, only the
@@ -317,6 +318,16 @@ class Ticket(models.Model):
         (DUPLICATE_STATUS, _('Duplicate')),
     )
 
+    PROBLEM = 1
+    ENHANCEMENT = 2
+    BUG = 3
+
+    TICKET_TYPE = (
+        (PROBLEM, _('Problem')),
+        (ENHANCEMENT, _('Enhancement')),
+        (BUG, _('Bug or Error')),
+    )
+
     PRIORITY_CHOICES = (
         (1, _('1. Critical')),
         (2, _('2. High')),
@@ -325,19 +336,9 @@ class Ticket(models.Model):
         (5, _('5. Very Low')),
     )
 
-    title = models.CharField(
-        _('Title'),
-        max_length=200,
-        )
-    queue = models.ForeignKey(
-        Queue,
-        verbose_name=_('Queue'),
-        )
-    created = models.DateTimeField(
-        _('Created'),
-        blank=True,
-        help_text=_('Date this ticket was first created'),
-        )
+    title = models.CharField(_('Title'), max_length=200,)
+    queue = models.ForeignKey(Queue,verbose_name=_('Queue'),)
+    created = models.DateTimeField(_('Created'), blank=True, help_text=_('Date this ticket was first created'),)
     modified = models.DateTimeField(
         _('Modified'),
         blank=True,
@@ -348,7 +349,7 @@ class Ticket(models.Model):
         blank=True,
         null=True,
         help_text=_('The submitter will receive an email for all public '
-            'follow-ups left for this task.'),
+                    'follow-ups left for this task.'),
         )
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -367,7 +368,7 @@ class Ticket(models.Model):
         blank=True,
         default=False,
         help_text=_('If a ticket is on hold, it will not automatically be '
-            'escalated.'),
+                    'escalated.'),
         )
     description = models.TextField(
         _('Description'),
@@ -388,11 +389,7 @@ class Ticket(models.Model):
         blank=3,
         help_text=_('1 = Highest Priority, 5 = Low Priority'),
         )
-    due_date = models.DateTimeField(
-        _('Due on'),
-        blank=True,
-        null=True,
-        )
+    due_date = models.DateTimeField(_('Due on'), blank=True, null=True,)
     last_escalation = models.DateTimeField(
         blank=True,
         null=True,
@@ -400,9 +397,11 @@ class Ticket(models.Model):
         help_text=_('The date this ticket was last escalated - updated '
             'automatically by management/commands/escalate_tickets.py.'),
         )
-    github_issue_number = models.CharField(max_length=255,null=True, blank=True)
-    github_issue_url = models.CharField(max_length=255,null=True, blank=True)
-    github_issue_id = models.CharField(max_length=255,null=True, blank=True)
+    github_issue_number = models.CharField(max_length=255, null=True, blank=True)
+    github_issue_url = models.CharField(max_length=255, null=True, blank=True)
+    github_issue_id = models.CharField(max_length=255, null=True, blank=True)
+    type = models.IntegerField(_('Ticket Type'), choices=TICKET_TYPE, default=PROBLEM, help_text="Type of Ticket")
+    votes = models.IntegerField(default=0)
 
     def _get_assigned_to(self):
         """ Custom property to allow us to easily print 'Unassigned' if a

@@ -23,6 +23,11 @@
     <th>{% trans "Priority" %}</th>
     <td>{{ ticket.get_priority_display }}</td>
 </tr>
+
+<tr>
+    <th>{% trans "Type" %}</th>
+    <td>{{ ticket.ticket_type }}</td>
+</tr>
 <span class="glyglyphicon glyglyphicon-thumbs-up"></span>&nbsp;<span class="glyglyphicon glyglyphicon-thumbs-down"></span>
 
 {% for customfield in ticket.ticketcustomfieldvalue_set.all %}

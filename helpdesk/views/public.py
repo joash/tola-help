@@ -328,3 +328,26 @@ def change_language(request):
 
     return render_to_response('helpdesk/public_change_language.html',
         RequestContext(request, {'next': return_to}))
+
+def vote_up(request, id):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
+    ticket = Ticket.objects.get(id=id)
+
+    ticket_new_value = ticket.votes + 1
+
+    Ticket.objects.update(votes=ticket_new_value)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def vote_down(request, id):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
+
+    ticket = Ticket.objects.get(id=id)
+
+    ticket_new_value = ticket.votes - 1
+
+    Ticket.objects.update(votes=ticket_new_value)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

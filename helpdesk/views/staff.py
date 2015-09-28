@@ -232,7 +232,6 @@ followup_delete = staff_member_required(followup_delete)
 
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    print ticket.queue
     if 'take' in request.GET:
         # Allow the user to assign the ticket to themselves whilst viewing it.
 

@@ -135,6 +135,14 @@ class TicketForm(forms.Form):
             'as \'3\'.'),
         )
 
+    type = forms.ChoiceField(
+        choices=Ticket.TICKET_TYPE,
+        required=True,
+        initial='3',
+        label=_('Type of Ticket'),
+        help_text=_('Enhancements requests or Bugs/Problems with Tola software.'),
+        )
+
     due_date = forms.DateTimeField(
         widget=extras.SelectDateWidget,
         required=False,
@@ -194,6 +202,7 @@ class TicketForm(forms.Form):
                     queue = q,
                     description = self.cleaned_data['body'],
                     priority = self.cleaned_data['priority'],
+                    type = self.cleaned_data['type'],
                     due_date = self.cleaned_data['due_date'],
                   )
 
@@ -337,6 +346,14 @@ class PublicTicketForm(forms.Form):
         help_text=_('Please select a priority carefully.'),
         )
 
+    type = forms.ChoiceField(
+        choices=Ticket.TICKET_TYPE,
+        required=True,
+        initial='1',
+        label=_('Type of Ticket'),
+        help_text=_('Enhancement requests or Bugs/Problems with Tola software.'),
+        )
+
     attachment = forms.FileField(
         required=False,
         label=_('Attach File'),
@@ -385,6 +402,7 @@ class PublicTicketForm(forms.Form):
             queue = q,
             description = self.cleaned_data['body'],
             priority = self.cleaned_data['priority'],
+            type = self.cleaned_data['type']
             )
 
         t.save()
