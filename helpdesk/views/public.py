@@ -336,7 +336,7 @@ def vote_up(request, id):
 
     ticket_new_value = ticket.votes + 1
 
-    Ticket.objects.update(votes=ticket_new_value)
+    Ticket.objects.filter(id=id).update(votes=ticket_new_value)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -348,6 +348,6 @@ def vote_down(request, id):
 
     ticket_new_value = ticket.votes - 1
 
-    Ticket.objects.update(votes=ticket_new_value)
+    Ticket.objects.filter(id=id).update(votes=ticket_new_value)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
