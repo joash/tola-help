@@ -1,6 +1,9 @@
 Tola-Help
 ===
-This is a help desk and info mangement system for the Tola suite of tools
+This is a help desk and info management system for the Tola suite of tools.
+
+Based on the great Help Desk system Django Help Desk 
+https://github.com/rossp/django-helpdesk
 
 Install
 ===

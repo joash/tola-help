@@ -62,12 +62,13 @@ CACHES = {
 }
 ########## END CACHE CONFIGURATION
 
-# LDAP stuff
-LDAP_LOGIN = 'uid=pluma,ou=People,dc=system,dc=mercycorps,dc=org'
-LDAP_SERVER = 'ldaps://myurl.org' # ldap dev
-#LDAP_SERVER = 'ldaps://myprodurl.org' # ldap prod
-LDAP_PASSWORD = 'wickedhardtocrackpassword' # ldap dev
-#LDAP_PASSWORD = 'evenmore hardtocrackpassword1' # ldap prod
-LDAP_USER_GROUP = 'groupname'
-LDAP_ADMIN_GROUP = 'groupadminname'
-#ERTB_ADMIN_URL = 'https://myadminurl.org'
+########## EMAIL SETTINGS
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'email@email.com'
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'email@email.com'
+SERVER_EMAIL = "email@email.com"
+#DEFAULT_TO_EMAIL = 'to email'
