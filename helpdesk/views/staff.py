@@ -69,9 +69,9 @@ def dashboard(request):
                 repo = settings.GITHUB_REPO_2
             github_status = get_issue(repo,ticket.github_issue_number)
 
-            if github_status.state == "open" and ticket.status != 1:
+            if github_status['state'] == "open" and ticket.status != 1:
                 Ticket.objects.update(status=1)
-            elif github_status.state == "closed" and ticket.status != 4:
+            elif github_status['state'] == "closed" and ticket.status != 4:
                 Ticket.objects.update(status=4)
 
 
