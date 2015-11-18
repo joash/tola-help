@@ -8,7 +8,7 @@
         <meta name="description" content="Mercy Corps Application">
         <meta name="author" content="Mercy Corps">
 
-        <title>{% block title %} Tola-Help {% endblock %}</title>
+        <title>{% block title %} TolaWork {% endblock %}</title>
 
         <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png" type="image/png">
 
@@ -69,13 +69,6 @@
                     <ul class="dropdown-menu">
                         <li><a href='{% url 'blog' %}'><span class="glyphicon glyphicon-info-sign"></span> <span class="nav-text">Blog/Release Info</span></a></li>
                         <li><a href='{% url 'helpdesk_kb_index' %}'><span class="glyphicon glyphicon-tree-deciduous"></span> <span class="nav-text">Knowledgebase</span></a></li>
-                    </ul>
-                </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/documentation">Documentation</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </li>
 
@@ -141,18 +134,19 @@
         </div><!-- .container collapse -->
 
         <div id = "loading" class="modal"> </div>
-        <div id="footer"><!-- Sticky Footer -->
+        <div id="footer">
+            <!-- Sticky Footer -->
             <div class="container">
                 <span style="float: left;" class="text-muted">
-                    <a href="https://github.com/mercycorps/tola-activity/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE Version 2</a>
+                    <a href="https://github.com/mercycorps/tola-work/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE Version 2</a>
                 </span>
-                <span style="float:right;" class="text-muted">
+                <span style="float: right;" class="text-muted">
                   <a href="{% url 'documentation' %}" class="text-muted">Documentation</a> |
 			            <a href="{% url 'faq' %}" class="text-muted">FAQ</a> |
-			            <a href="{% url 'contact' %}" class="text-muted">Feedback</a>
+                        <a onclick="newPopup('http://tola.work/helpdesk/tickets/submit/','Tola Work - New Ticket'); return false;" href="#" class="text-muted">Feedback</a>
+                        <br><b>Inspired in Kabul. Built in Portland.</b>
                 </span>
             </div>
-
         </div><!-- .footer collapse -->
 
         <!-- jQuery UI (necessary for datepicker as well as dataTables library -->
