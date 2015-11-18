@@ -77,7 +77,7 @@ $(function () {
                                   <th>Title</th>
                                   <th>Votes</th>
                               </tr>
-                              {% for item in voted_tickets %}
+                              {% for item in votes_tickets %}
                               <tr>
                                   <td>{{ item.queue }}</td>
                                   <td><a href="/helpdesk/tickets/{{ item.id }}/">{{ item.title }}</a></td>
