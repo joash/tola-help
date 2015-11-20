@@ -137,15 +137,15 @@
         <div id="footer">
             <!-- Sticky Footer -->
             <div class="container">
-                <span style="float: left;" class="text-muted">
-                    <a href="https://github.com/mercycorps/tola-work/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE Version 2</a>
-                </span>
-                <span style="float: right;" class="text-muted">
-                  <a href="{% url 'documentation' %}" class="text-muted">Documentation</a> |
-			            <a href="{% url 'faq' %}" class="text-muted">FAQ</a> |
-                        <a onclick="newPopup('http://tola.work/helpdesk/tickets/submit/','Tola Work - New Ticket'); return false;" href="#" class="text-muted">Feedback</a>
-                        <br><b>Inspired in Kabul. Built in Portland.</b>
-                </span>
+                <div class="col-md-4 text-left">
+                    <a href="https://github.com/toladata/tola-work/blob/master/LICENSE" class="text-muted">GNU GENERAL PUBLIC LICENSE Version 2</a>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="http://www.toladata.com" class="text-muted">Inspired in Kabul. Built in Portland.</a>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="{% url 'documentation' %}" class="text-muted">Documentation</a> | <a href="{% url 'faq' %}" class="text-muted">FAQ</a>
+                </div>
             </div>
         </div><!-- .footer collapse -->
 
