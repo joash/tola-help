@@ -77,3 +77,8 @@ DEV_APPS = (
 )
 
 INSTALLED_APPS = INSTALLED_APPS + DEV_APPS
+
+########## EMAIL
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'toladatawork@gmail.com'
+EMAIL_HOST_PASSWORD = 'ttmtola2015'
