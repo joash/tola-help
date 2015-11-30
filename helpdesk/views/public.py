@@ -134,7 +134,7 @@ def public_ticket_list(request):
     query_params = {
         'filtering': {},
         'sorting': None,
-        'sortreverse': False,
+        'sortreverse': True,
         'keyword': None,
         'other_filter': None,
         }
