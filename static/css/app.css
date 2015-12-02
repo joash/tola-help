@@ -25,3 +25,13 @@ body {
 #footer > .container {
     padding: 10px;
 }
+
+body > .container {
+    height: 100%;
+    margin-top: 40px;
+}
+
+.row {
+margin-left: 0px;
+margin-right: 0px
+}

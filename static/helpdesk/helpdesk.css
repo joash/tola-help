@@ -62,7 +62,7 @@ table {
     background-color: #ccc;
 }
 
-#header, #body, #footer {
+#header, #body {
     clear: both;
 }
 

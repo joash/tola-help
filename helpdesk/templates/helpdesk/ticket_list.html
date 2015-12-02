@@ -195,18 +195,18 @@ $(document).ready(function() {
       </h3>
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-    <form method='get' action='{% url 'helpdesk_list' %}'>
-    <p><label for='id_query_selector'>{% trans "Query" %}</label> <select name='saved_query' id='id_query_selector'>
-        {% for q in user_saved_queries %}
-        <option value='{{ q.id }}'>{{ q.title }}{% if q.shared %} (Shared{% ifnotequal user q.user %} by {{ q.user.get_username }}{% endifnotequal %}){% endif %}</option>
-        {% endfor %}
-    </select></p>
-    <input class="btn btn-primary" type='submit' value='{% trans "Run Query" %}'>
-    {% csrf_token %}</form>
+        <div class="panel-body">
+            <form method='get' action='{% url 'helpdesk_list' %}'>
+            <p><label for='id_query_selector'>{% trans "Query" %}</label> <select name='saved_query' id='id_query_selector'>
+            {% for q in user_saved_queries %}
+            <option value='{{ q.id }}'>{{ q.title }}{% if q.shared %} (Shared{% ifnotequal user q.user %} by {{ q.user.get_username }}{% endifnotequal %}){% endif %}</option>
+            {% endfor %}
+            </select></p>
+            <input class="btn btn-primary" type='submit' value='{% trans "Run Query" %}'>
+            {% csrf_token %}</form>
+        </div>
     </div>
-    </div>
-    </div>
+  </div>
 </div>
 
 </div>
@@ -225,18 +225,18 @@ $(document).ready(function() {
 <tbody>
 {% for ticket in tickets.object_list %}
 <tr class="{{ ticket.get_priority_css_class }}">
-<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket|upper }}</a></th>
+<td><a href='{{ ticket.get_absolute_url }}'>{{ ticket.ticket|upper }}</a></td>
 <td><input type='checkbox' name='ticket_id' value='{{ ticket.id }}' class='ticket_multi_select' /></td>
 <td>{{ ticket.get_priority_display }}</td>
 <td>{{ ticket.get_type_display }}</td>
-<th><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></th>
+<td><a href='{{ ticket.get_absolute_url }}'>{{ ticket.title }}</a></td>
 <td>{{ ticket.queue }}</td>
 <td>{{ ticket.get_status }}</td>
 <td><span title='{{ ticket.created|date:"r" }}'>{{ ticket.created }}</span></td>
 <td>{{ ticket.get_assigned_to }}</td>
 </tr>
 {% empty %}
-<tr><td colspan='5'>{% trans "No Tickets Match Your Selection" %}</td></tr>
+<tr><td colspan='9'>{% trans "No Tickets Match Your Selection" %}</td></tr>
 {% endfor %}
 </tbody>
 </table>
