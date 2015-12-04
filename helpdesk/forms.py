@@ -29,7 +29,7 @@ from helpdesk.models import Ticket, Queue, FollowUp, Attachment, IgnoreEmail, Ti
 class EditTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        exclude = ('created', 'modified', 'status', 'on_hold', 'resolution', 'last_escalation')
+        exclude = ('created', 'modified', 'status', 'on_hold', 'resolution', 'last_escalation', 'vote')
     
     def __init__(self, *args, **kwargs):
         """
